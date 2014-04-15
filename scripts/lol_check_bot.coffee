@@ -16,6 +16,8 @@ to_utf8 = (body) ->
 module.exports = (robot) ->
   robot.respond /lol/i, (msg) ->
 
+    msg.send "인벤에서 정보를 검색합니다..."
+
     url_to_crawl = "http://lol.inven.co.kr/dataninfo/match/teamList.php"
     request_option = {
       uri: url_to_crawl,
@@ -28,6 +30,9 @@ module.exports = (robot) ->
       $ = cheerio.load to_utf8(body)
 
       listFrame = $('#lolDbMatchTeamList .listFrame')
+
+      msg.send url_to_crawl
+
       listFrame.each (i, elem) ->
         listTop = $(this).find('.listTop')
         listTable = $(this).find('.listTable tbody tr')
@@ -37,12 +42,13 @@ module.exports = (robot) ->
         stage = listTop.find('.stage').text()
         gametime = listTop.find('.gametime').text()
 
-        msg.send "#{date} #{title} #{stage} #{gametime}"
+        message = "#{date} #{title} 리그 #{stage} 경기\n"
 
         listTable.each (i, elem) ->
           teamname = $($(this).find('td')[0]).text()
           winlose = $($(this).find('td')[1]).text()
-          msg.send "#{teamname} - #{winlose}"
 
-        msg.send ""
+          message += "#{teamname} - #{winlose}\n"
+
+        msg.send message
 

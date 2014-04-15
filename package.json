@@ -20,9 +20,12 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
+    "cheerio": "^0.15.0",
     "hubot": ">= 2.6.0 < 3.0.0",
     "hubot-scripts": ">= 2.5.0 < 3.0.0",
-    "hubot-slack": "^2.0.4"
+    "hubot-slack": "^2.0.4",
+    "iconv": "^2.0.7",
+    "request": "^2.34.0"
   },
   "engines": {
     "node": ">= 0.8.x",

@@ -11,11 +11,16 @@ module.exports = (robot) ->
   robot.respond /(kow)/i, (msg) ->
     msg.send('KOW 통계는 여기에서 확인하세요. http://kow.esportsbattle.com:12000/')
 
-  robot.respond /(kow) (유니크) (.*)/i, (msg) ->
-    query = msg.match[3]
-    today = Date.today().toFormat("YYYYMMDD")
-    msg.send('kow에서 오늘('+today+')의 유니크 ' + query + ' 카운트를 확인합니다.')
-    msg.http("http://kow.esportsbattle.com:12000/event/unique/count/sdate"+today+"/edate"+today)
+  robot.respond /(kow) (오늘|어제) (유니크) (.*)/i, (msg) ->
+    date_query = msg.match[2]
+    query = msg.match[4]
+
+    date = Date.today().toFormat("YYYYMMDD")
+    if(/어제/.test(date_query))
+      date = Date.yesterday().toFormat("YYYYMMDD")
+
+    msg.send('kow에서 ' +date_query+ '('+date+')의 유니크 ' + query + ' 카운트를 확인합니다.')
+    msg.http("http://kow.esportsbattle.com:12000/event/unique/count/sdate"+date+"/edate"+date)
       .get() (err, res, body) ->
         JSON.parse(body).data.eventList.forEach (event) ->
           if(event.event.name.indexOf(query) != -1)

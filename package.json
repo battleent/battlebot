@@ -20,13 +20,16 @@
     "url": "https://github.com/github/hubot.git"
   },
   "dependencies": {
+    "aws-sdk": "^2.0.31",
     "cheerio": "^0.15.0",
     "date-utils": "^1.2.16",
     "hubot": "^2.7.5",
     "hubot-scripts": "^2.5.15",
     "hubot-slack": "^3.0.0",
     "iconv": "^2.1.4",
-    "request": "^2.37.0"
+    "q": "^1.1.2",
+    "request": "^2.37.0",
+    "underscore": "^1.7.0"
   },
   "engines": {
     "node": ">= 0.8.x",

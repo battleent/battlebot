@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   박수
+#   hubot 박수
 #
 # Author:
 #   joshfrench, edit jiwoong

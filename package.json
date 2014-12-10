@@ -25,6 +25,7 @@
     "date-utils": "^1.2.16",
     "hubot": "^2.10.0",
     "hubot-auth": "^1.1.2",
+    "hubot-heroku-keepalive": "0.0.4",
     "hubot-scripts": "^2.5.16",
     "hubot-slack": "^3.0.0",
     "iconv": "^2.1.4",

@@ -23,7 +23,11 @@ zzalbangs = [
   'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/413ad6156534210d197cb160a9345a2f/battleduck_die.png',
   'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/f9bbf5bdc7cde88ba5e5fad2864fe013/battleduck_stella.png',
   'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/b1f2aaf02a8ab1c2b29da4d558681b21/battleduck_want.png',
-  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/cf9c6771be5d8c6c15cfc84e3346af62/battleduck_sulk.png'
+  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/cf9c6771be5d8c6c15cfc84e3346af62/battleduck_sulk.png',
+  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/fa296e22e175218c4998962adf34bef7/battleduck_line.png',
+  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/a60085cbbb954fda1bd426bd97655736/battleduck_rusleep.png',
+  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/9cae575749909e9962f7de134ea8de7f/battleduck_gajami.png',
+  'https://trello-attachments.s3.amazonaws.com/54d451f89dd0df6027e328a6/240x240/30ee9ddcdf191de8bfd430267d641225/battleduck_sing.png'
 ]
 
 module.exports = (robot) ->

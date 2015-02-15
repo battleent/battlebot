@@ -26,6 +26,6 @@ answers = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /(.*)\?$/i, (msg) ->
+  robot.respond /(.*)\?$/i, (msg) ->
     msg.send msg.random answers
 

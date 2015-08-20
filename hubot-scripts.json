@@ -1,1 +1,1 @@
-["remind.coffee", "redis-brain.coffee", "newrelic.coffee"]
+["redis-brain.coffee", "newrelic.coffee"]

@@ -31,6 +31,6 @@ zzalbangs = [
 ]
 
 module.exports = (robot) ->
-  robot.hear /짤|짤방/i, (msg) ->
+  robot.respond /짤|짤방/i, (msg) ->
     msg.send msg.random zzalbangs
 

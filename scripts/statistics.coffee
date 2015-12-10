@@ -4,28 +4,15 @@
 # Commands:
 #   hubot 통계
 #   hubot 유저현황
-
-spacing = (length) ->
-  s = "                 " #17
-  console.log(s.substring(0,s.length - length).length)
-  s.substring(0, s.length-length)
-
-max_length = (l1, l2, l3) ->
-  max = 0
-  if l1 >= l2
-    max = l1
-  else
-    max = l2
-  if max < l3
-    max=l3
-  max
+#   hubot show dau
+#   hubot show me the money
 
 module.exports = (robot) ->
   robot.respond /통계/i, (msg) ->
-    msg.send "1. 유저현황: 전체 유저 현황\n2. show dau : 전주 대비 DAU"
+    msg.send "다음의 기능을 제공합니다\n1. *whalebot 유저현황:* 전체 유저 현황\n2. *whalebot show dau:* 전주 대비 DAU\n3. *whalebot show me the money:* 어제의 광고 수익"
     
   robot.respond /유저현황/i, (msg) ->
-    robot.http("http://stat.battlecomics.co.kr/users/status.json")
+    robot.http("http://stat.battlecomics.co.kr/users/status.json?key=battlecomics_statistics")
       .get() (err, res, body) ->
         total_user = "#{JSON.parse(body).total_signup_user}"
         total_device = "#{JSON.parse(body).total_device}"
@@ -34,12 +21,10 @@ module.exports = (robot) ->
         yesterday_user = "#{JSON.parse(body).yesterday_signup_user}"
         yesterday_device = "#{JSON.parse(body).first_visit_device_yesterday}"
 
-        len = max_length total_user.length, total_device.length, 1
-
-        msg.send "\n*총 가입 유저*#{spacing 7}#{spacing len+total_user.length}#{total_user}\n*총 접속 단말기 수*#{spacing 10}#{spacing len+total_device.length}#{total_device}\n*오늘 가입한 유저*#{spacing 9}#{spacing len+today_user.length}#{today_user}\n*오늘 최초 접속 단말기 수*#{spacing 14}#{spacing len+today_device.length}#{today_device}\n*어제 가입한 유저*#{spacing 9}#{spacing len+yesterday_user.length}#{yesterday_user}\n*어제 최초 접속 단말기 수*#{spacing 14}#{spacing len+yesterday_device.length}#{yesterday_device}"
+        msg.send "*총 가입 유저* #{total_user}\n*총 접속 단말기 수* #{total_device}\n*오늘 가입한 유저* #{today_user}\n*오늘 최초 접속 단말기 수* #{today_device}\n*어제 가입한 유저* #{yesterday_user}\n*어제 최초 접속 단말기 수* #{yesterday_device}"
 
   robot.respond /show dau/i, (msg) ->
-    robot.http("http://stat.battlecomics.co.kr/users/daily_spreadsheet.json")
+    robot.http("http://stat.battlecomics.co.kr/users/daily_spreadsheet.json?key=battlecomics_statistics")
       .get() (err, res, body) ->
         date = "#{JSON.parse(body).date}"
         dau = "#{JSON.parse(body).byday_app}"
@@ -49,6 +34,9 @@ module.exports = (robot) ->
         install = "#{JSON.parse(body).byday_install}"
         install_7 = "#{JSON.parse(body).byday_install - JSON.parse(body).byday_install_7}"
 
-        len = max_length dau.length, web_dau.length, install.length
+        msg.send "*#{date}의 일간 주요 수치*\n*DAU* #{dau} (#{dau_7})\n*WEB DAU* #{web_dau} (#{web_dau_7})\n*INSTALL* #{install} (#{install_7})"
 
-        msg.send "#{date}\n*DAU*#{spacing 3}#{spacing len+dau.length}#{dau}#{spacing dau_7.length}(#{dau_7})\n*WEB DAU*#{spacing 7}#{spacing len+web_dau.length}#{web_dau}#{spacing web_dau_7.length}(#{web_dau_7})\n*INSTALL*#{spacing 7}#{spacing len+install.length}#{install}#{spacing install_7.length}(#{install_7})"
+  robot.respond /show me the money/i, (msg) ->
+    robot.http("http://stat.battlecomics.co.kr/ad/profit.json?key=battlecomics_statistics")
+      .get() (err, res, body) ->
+        msg.send "*어제*의 띠배너 매출은:\n*쉘위애드* #{JSON.parse(body).shallwead_banner}원\n*카울리* #{JSON.parse(body).cauly_banner}원\n*매조미디어* #{JSON.parse(body).mezzo_banner}원\n*애드몹* #{JSON.parse(body).admob_banner}원\n*애드센스* #{JSON.parse(body).adsense_banner}원으로\n*총 #{JSON.parse(body).total_banner}원*입니다.\n\n*어제*의 인터스티셜 매출은:\n*카울리* #{JSON.parse(body).cauly_interstitial}원\n*매조미디어* #{JSON.parse(body).mezzo_interstitial}원으로\n*총 #{JSON.parse(body).total_interstitial}원*입니다."

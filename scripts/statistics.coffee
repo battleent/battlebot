@@ -37,6 +37,6 @@ module.exports = (robot) ->
         msg.send "*#{date}의 일간 주요 수치*\n*DAU* #{dau} (#{dau_7})\n*WEB DAU* #{web_dau} (#{web_dau_7})\n*INSTALL* #{install} (#{install_7})"
 
   robot.respond /show me the money/i, (msg) ->
-    robot.http("http://stat.battlecomics.co.kr/ad/profit.json?key=battlecomics_statistics")
+    robot.http("http://stat.battlecomics.co.kr/platforms/profit.json?key=battlecomics_statistics")
       .get() (err, res, body) ->
         msg.send "*어제*의 띠배너 매출은:\n*쉘위애드* #{JSON.parse(body).shallwead_banner}원\n*카울리* #{JSON.parse(body).cauly_banner}원\n*매조미디어* #{JSON.parse(body).mezzo_banner}원\n*애드몹* #{JSON.parse(body).admob_banner}원\n*애드센스* #{JSON.parse(body).adsense_banner}원으로\n*총 #{JSON.parse(body).total_banner}원*입니다.\n\n*어제*의 인터스티셜 매출은:\n*카울리* #{JSON.parse(body).cauly_interstitial}원\n*매조미디어* #{JSON.parse(body).mezzo_interstitial}원으로\n*총 #{JSON.parse(body).total_interstitial}원*입니다."

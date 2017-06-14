@@ -1,11 +1,9 @@
 # Description:
-#   statistics
+#   ddoooing
 #
 # Commands:
-#   hubot 통계
-#   hubot 유저현황
-#   hubot show dau
-#   hubot show me the money
+#   hubot in
+#   hubot out
 
 module.exports = (robot) ->
   robot.respond /in/i, (msg) ->

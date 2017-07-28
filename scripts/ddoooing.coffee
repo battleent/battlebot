@@ -5,6 +5,8 @@
 #   hubot in
 #   hubot out
 
+ENV = process.env
+
 module.exports = (robot) ->
   robot.respond /in/i, (msg) ->
     data = {

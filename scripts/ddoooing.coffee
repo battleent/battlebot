@@ -12,9 +12,9 @@ module.exports = (robot) ->
       username: '???'
       text: 'In'
     }
-    robot.http("https://thewhalegames.slack.com/services/hooks/incoming-webhook")
+    robot.http(ENV['DDOOOING_WEBHOOK_ENDPOINT'])
       .header('Content-Type', 'application/x-www-form-urlencoded')
-      .post("token=1Ow4CtIMO9jF9EUgwkz4tXfj&payload=#{encodeURI(JSON.stringify(data))}") (err, response, body) ->
+      .post("token=#{ENV['DDOOOING_WEBHOOK_TOKEN']}&payload=#{encodeURI(JSON.stringify(data))}") (err, response, body) ->
 
     msg.send "편안한 시간 되세요~"
 
@@ -24,8 +24,8 @@ module.exports = (robot) ->
       username: '???'
       text: 'Out'
     }
-    robot.http("https://thewhalegames.slack.com/services/hooks/incoming-webhook")
+    robot.http(ENV['DDOOOING_WEBHOOK_ENDPOINT'])
       .header('Content-Type', 'application/x-www-form-urlencoded')
-      .post("token=1Ow4CtIMO9jF9EUgwkz4tXfj&payload=#{encodeURI(JSON.stringify(data))}") (err, response, body) ->
+      .post("token=#{ENV['DDOOOING_WEBHOOK_TOKEN']}&payload=#{encodeURI(JSON.stringify(data))}") (err, response, body) ->
 
     msg.send "편안한 시간 되셨나요?"

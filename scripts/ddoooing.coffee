@@ -12,7 +12,7 @@ module.exports = (robot) ->
     data = {
       channel: '#ddoooing'
       username: '???'
-      text: 'In'
+      text: ':in:'
     }
     robot.http(ENV['DDOOOING_WEBHOOK_ENDPOINT'])
       .header('Content-Type', 'application/x-www-form-urlencoded')
@@ -24,7 +24,7 @@ module.exports = (robot) ->
     data = {
       channel: '#ddoooing'
       username: '???'
-      text: 'Out'
+      text: ':out:'
     }
     robot.http(ENV['DDOOOING_WEBHOOK_ENDPOINT'])
       .header('Content-Type', 'application/x-www-form-urlencoded')

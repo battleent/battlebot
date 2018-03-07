@@ -6,4 +6,4 @@ image = {
 
 module.exports = (robot) ->
   robot.respond /merge/i, (msg) ->
-    msg.send msg.random image['merge']
+    msg.send image['merge']
